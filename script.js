@@ -1,79 +1,234 @@
-// Bouton "Oui"
-const boutonOui = document.getElementById("oui");
+```javascript
+/* =========================
+   RÉCUPÉRATION DES ÉLÉMENTS
+========================= */
 
-// Bouton "Non"
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+
+const boutonOui = document.getElementById("oui");
 const boutonNon = document.getElementById("non");
 
-// Message qui apparaît après avoir cliqué sur "Oui"
 const message = document.getElementById("message");
 
-// Le bouton "Non" bouge quand on essaie de passer dessus
-boutonNon.addEventListener("mouseover", function () {
+const confirmation = document.getElementById("confirmation");
+const selectedChoice = document.getElementById("selected-choice");
 
-    // Taille de la fenêtre
+const confirmChoice = document.getElementById("confirm-choice");
+const cancelChoice = document.getElementById("cancel-choice");
+
+const finalMessage = document.getElementById("final-message");
+const finalChoice = document.getElementById("final-choice");
+
+let choixDate = "";
+
+
+/* =========================
+   BOUTON NON — PAGE 1
+========================= */
+
+function bougerBoutonNon() {
+
     const largeur = window.innerWidth;
     const hauteur = window.innerHeight;
 
-    // Position aléatoire
-    const nouvellePositionX = Math.random() * (largeur - boutonNon.offsetWidth - 40) + 20;
-    const nouvellePositionY = Math.random() * (hauteur - boutonNon.offsetHeight - 40) + 20;
+    const largeurBouton = boutonNon.offsetWidth;
+    const hauteurBouton = boutonNon.offsetHeight;
 
-    // Déplacement du bouton
+    const maxX = largeur - largeurBouton - 20;
+    const maxY = hauteur - hauteurBouton - 20;
+
+    const nouvellePositionX =
+        Math.max(20, Math.random() * maxX);
+
+    const nouvellePositionY =
+        Math.max(20, Math.random() * maxY);
+
     boutonNon.style.position = "fixed";
-    boutonNon.style.left = nouvellePositionX + "px";
-    boutonNon.style.top = nouvellePositionY + "px";
+
+    boutonNon.style.left =
+        nouvellePositionX + "px";
+
+    boutonNon.style.top =
+        nouvellePositionY + "px";
+}
+
+
+/* Ordinateur */
+
+boutonNon.addEventListener("mouseover", function () {
+
+    bougerBoutonNon();
+
 });
 
-// Sur téléphone : le bouton bouge lorsqu'elle essaie de le toucher
+
+/* Téléphone */
+
 boutonNon.addEventListener("touchstart", function (event) {
 
     event.preventDefault();
 
-    const largeur = window.innerWidth;
-    const hauteur = window.innerHeight;
+    bougerBoutonNon();
 
-    const nouvellePositionX = Math.random() * (largeur - boutonNon.offsetWidth - 40) + 20;
-    const nouvellePositionY = Math.random() * (hauteur - boutonNon.offsetHeight - 40) + 20;
-
-    boutonNon.style.position = "fixed";
-    boutonNon.style.left = nouvellePositionX + "px";
-    boutonNon.style.top = nouvellePositionY + "px";
 });
 
-// Quand elle clique sur "Oui"
+
+/* =========================
+   BOUTON OUI — PAGE 1
+========================= */
+
 boutonOui.addEventListener("click", function () {
 
-    message.innerHTML = "🥰 Je savais que tu dirais oui ! ❤️<br><br>Prépare-toi pour notre date... ✨";
+    /*
+       Petite animation avant de passer
+       à la deuxième page.
+    */
 
-    message.style.display = "block";
+    boutonOui.style.transform = "scale(1.15)";
 
-    // Cache les boutons
-    boutonOui.style.display = "none";
-    boutonNon.style.display = "none";
-
-    // Petits cœurs qui tombent
     creerCoeurs();
+
+    setTimeout(function () {
+
+        page1.classList.remove("active");
+
+        page2.classList.add("active");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }, 600);
+
 });
 
 
-// Fonction pour créer les petits cœurs
+/* =========================
+   CHOIX DU DATE
+========================= */
+
+const dateCards =
+    document.querySelectorAll(".date-card");
+
+
+dateCards.forEach(function (card) {
+
+    card.addEventListener("click", function () {
+
+        /*
+           Récupère le choix de la personne.
+        */
+
+        choixDate =
+            card.getAttribute("data-choice");
+
+
+        /*
+           Affiche le choix dans la fenêtre.
+        */
+
+        selectedChoice.textContent =
+            choixDate;
+
+
+        /*
+           Affiche la confirmation.
+        */
+
+        confirmation.classList.add("show");
+
+    });
+
+});
+
+
+/* =========================
+   ANNULER LE CHOIX
+========================= */
+
+cancelChoice.addEventListener("click", function () {
+
+    confirmation.classList.remove("show");
+
+});
+
+
+/* =========================
+   CONFIRMER LE DATE
+========================= */
+
+confirmChoice.addEventListener("click", function () {
+
+    /*
+       Ferme la première fenêtre.
+    */
+
+    confirmation.classList.remove("show");
+
+
+    /*
+       Affiche le choix final.
+    */
+
+    finalChoice.textContent =
+        choixDate;
+
+
+    /*
+       Affiche le message final.
+    */
+
+    setTimeout(function () {
+
+        finalMessage.classList.add("show");
+
+        creerCoeurs();
+
+    }, 300);
+
+});
+
+
+/* =========================
+   CRÉATION DES CŒURS
+========================= */
+
 function creerCoeurs() {
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 35; i++) {
 
-        const coeur = document.createElement("div");
+        const coeur =
+            document.createElement("div");
 
         coeur.innerHTML = "❤️";
+
         coeur.classList.add("coeur");
 
-        coeur.style.left = Math.random() * 100 + "vw";
-        coeur.style.animationDelay = Math.random() * 2 + "s";
+        coeur.style.left =
+            Math.random() * 100 + "vw";
+
+        coeur.style.animationDelay =
+            Math.random() * 2 + "s";
+
+        coeur.style.fontSize =
+            (15 + Math.random() * 20) + "px";
 
         document.body.appendChild(coeur);
 
-        // Supprime le cœur après l'animation
+
+        /*
+           Supprime le cœur après l'animation.
+        */
+
         setTimeout(function () {
+
             coeur.remove();
-        }, 5000);
+
+        }, 5500);
+
     }
+
 }
+```
