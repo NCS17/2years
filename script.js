@@ -1,288 +1,223 @@
 ```javascript
-/* =========================
-   ÉLÉMENTS DU SITE
-========================= */
+document.addEventListener("DOMContentLoaded", function () {
 
-const page1 = document.getElementById("page1");
-const page2 = document.getElementById("page2");
+    /* =========================
+       RÉCUPÉRATION DES ÉLÉMENTS
+    ========================= */
 
-const boutonOui = document.getElementById("oui");
-const boutonNon = document.getElementById("non");
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
 
-const message = document.getElementById("message");
-const boutonSuite = document.getElementById("suite");
+    const boutonOui = document.getElementById("oui");
+    const boutonNon = document.getElementById("non");
 
-const confirmation = document.getElementById("confirmation");
-const selectedChoice = document.getElementById("selected-choice");
+    const message = document.getElementById("message");
+    const boutonSuite = document.getElementById("suite");
 
-const confirmChoice = document.getElementById("confirm-choice");
-const cancelChoice = document.getElementById("cancel-choice");
+    const confirmation = document.getElementById("confirmation");
+    const selectedChoice = document.getElementById("selected-choice");
 
-const finalMessage = document.getElementById("final-message");
-const finalChoice = document.getElementById("final-choice");
+    const confirmChoice = document.getElementById("confirm-choice");
+    const cancelChoice = document.getElementById("cancel-choice");
 
-
-/* Choix de date */
-
-let choixDate = "";
+    const finalMessage = document.getElementById("final-message");
+    const finalChoice = document.getElementById("final-choice");
 
 
-/* =========================
-   BOUTON NON
-========================= */
+    /* =========================
+       VÉRIFICATION
+    ========================== */
 
-function bougerBoutonNon() {
-
-    const largeur = window.innerWidth;
-    const hauteur = window.innerHeight;
-
-    const largeurBouton = boutonNon.offsetWidth;
-    const hauteurBouton = boutonNon.offsetHeight;
-
-    const maxX = largeur - largeurBouton - 20;
-    const maxY = hauteur - hauteurBouton - 20;
-
-    const nouvellePositionX =
-        Math.max(20, Math.random() * maxX);
-
-    const nouvellePositionY =
-        Math.max(20, Math.random() * maxY);
-
-    boutonNon.style.position = "fixed";
-
-    boutonNon.style.left =
-        nouvellePositionX + "px";
-
-    boutonNon.style.top =
-        nouvellePositionY + "px";
-}
+    console.log("Site chargé ❤️");
 
 
-/* Ordinateur */
+    /* =========================
+       BOUTON NON
+    ========================== */
 
-boutonNon.addEventListener("mouseover", function () {
+    function bougerNon() {
 
-    bougerBoutonNon();
+        const maxX = window.innerWidth - boutonNon.offsetWidth - 20;
+        const maxY = window.innerHeight - boutonNon.offsetHeight - 20;
 
-});
+        const x = Math.random() * Math.max(maxX, 20);
+        const y = Math.random() * Math.max(maxY, 20);
 
-
-/* Téléphone */
-
-boutonNon.addEventListener("touchstart", function (event) {
-
-    event.preventDefault();
-
-    bougerBoutonNon();
-
-});
-
-
-/* =========================
-   BOUTON OUI
-========================= */
-
-boutonOui.addEventListener("click", function () {
-
-    /*
-       On cache les deux premiers boutons.
-    */
-
-    boutonOui.style.display = "none";
-
-    boutonNon.style.display = "none";
+        boutonNon.style.position = "fixed";
+        boutonNon.style.left = x + "px";
+        boutonNon.style.top = y + "px";
+        boutonNon.style.zIndex = "9999";
+    }
 
 
-    /*
-       On affiche le message.
-    */
+    /* Sur ordinateur */
 
-    message.style.display = "block";
-
-
-    /*
-       Petite pluie de cœurs.
-    */
-
-    creerCoeurs();
-
-});
-
-
-/* =========================
-   DÉCOUVRIR LA SUITE
-========================= */
-
-boutonSuite.addEventListener("click", function () {
-
-    /*
-       On fait disparaître la page 1.
-    */
-
-    page1.classList.remove("active");
-
-
-    /*
-       On affiche la page 2.
-    */
-
-    page2.classList.add("active");
-
-
-    /*
-       On remonte en haut de la page.
-    */
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+    boutonNon.addEventListener("mouseenter", function () {
+        bougerNon();
     });
 
-});
 
+    /* Sur téléphone */
 
-/* =========================
-   CHOIX DU DATE
-========================= */
+    boutonNon.addEventListener("touchstart", function (event) {
 
-const dateCards =
-    document.querySelectorAll(".date-card");
+        event.preventDefault();
 
-
-dateCards.forEach(function (card) {
-
-    card.addEventListener("click", function () {
-
-        /*
-           On récupère le choix.
-        */
-
-        choixDate =
-            card.getAttribute("data-choice");
-
-
-        /*
-           On affiche le choix dans
-           la fenêtre de confirmation.
-        */
-
-        selectedChoice.textContent =
-            choixDate;
-
-
-        /*
-           On ouvre la fenêtre.
-        */
-
-        confirmation.classList.add("show");
+        bougerNon();
 
     });
 
-});
+
+    /* =========================
+       BOUTON OUI
+    ========================== */
+
+    boutonOui.addEventListener("click", function () {
+
+        console.log("Bouton OUI cliqué ❤️");
 
 
-/* =========================
-   BOUTON "JE CHANGE"
-========================= */
+        /* Cache Oui et Non */
 
-cancelChoice.addEventListener("click", function () {
-
-    confirmation.classList.remove("show");
-
-});
+        boutonOui.style.display = "none";
+        boutonNon.style.display = "none";
 
 
-/* =========================
-   CONFIRMER LE CHOIX
-========================= */
+        /* Affiche le message */
 
-confirmChoice.addEventListener("click", function () {
-
-    /*
-       Ferme la confirmation.
-    */
-
-    confirmation.classList.remove("show");
+        message.style.display = "block";
 
 
-    /*
-       Met le choix dans le message final.
-    */
-
-    finalChoice.textContent =
-        choixDate;
-
-
-    /*
-       Petit délai avant l'affichage.
-    */
-
-    setTimeout(function () {
-
-        finalMessage.classList.add("show");
+        /* Cœurs */
 
         creerCoeurs();
 
-    }, 300);
-
-});
+    });
 
 
-/* =========================
-   CRÉER DES CŒURS
-========================= */
+    /* =========================
+       DÉCOUVRIR LA SUITE
+    ========================== */
 
-function creerCoeurs() {
+    boutonSuite.addEventListener("click", function () {
 
-    for (let i = 0; i < 35; i++) {
-
-        const coeur =
-            document.createElement("div");
-
-        coeur.innerHTML = "❤️";
-
-        coeur.classList.add("coeur");
+        console.log("Page 2 ❤️");
 
 
-        /*
-           Position horizontale aléatoire.
-        */
+        /* Page 1 disparaît */
 
-        coeur.style.left =
-            Math.random() * 100 + "vw";
+        page1.classList.remove("active");
 
 
-        /*
-           Délai aléatoire.
-        */
+        /* Page 2 apparaît */
 
-        coeur.style.animationDelay =
-            Math.random() * 2 + "s";
+        page2.classList.add("active");
 
 
-        /*
-           Taille aléatoire.
-        */
+        /* Retour en haut */
 
-        coeur.style.fontSize =
-            (15 + Math.random() * 20) + "px";
+        window.scrollTo(0, 0);
 
-
-        document.body.appendChild(coeur);
+    });
 
 
-        /*
-           Supprime le cœur après
-           l'animation.
-        */
+    /* =========================
+       CHOIX DES DATES
+    ========================== */
+
+    const dateCards =
+        document.querySelectorAll(".date-card");
+
+
+    dateCards.forEach(function (card) {
+
+        card.addEventListener("click", function () {
+
+            choixDate =
+                card.getAttribute("data-choice");
+
+            selectedChoice.textContent =
+                choixDate;
+
+            confirmation.classList.add("show");
+
+        });
+
+    });
+
+
+    let choixDate = "";
+
+
+    /* =========================
+       ANNULER LE CHOIX
+    ========================== */
+
+    cancelChoice.addEventListener("click", function () {
+
+        confirmation.classList.remove("show");
+
+    });
+
+
+    /* =========================
+       CONFIRMER
+    ========================== */
+
+    confirmChoice.addEventListener("click", function () {
+
+        confirmation.classList.remove("show");
+
+        finalChoice.textContent =
+            choixDate;
 
         setTimeout(function () {
 
-            coeur.remove();
+            finalMessage.classList.add("show");
 
-        }, 5500);
+            creerCoeurs();
+
+        }, 300);
+
+    });
+
+
+    /* =========================
+       CŒURS
+    ========================== */
+
+    function creerCoeurs() {
+
+        for (let i = 0; i < 35; i++) {
+
+            const coeur =
+                document.createElement("div");
+
+            coeur.textContent = "❤️";
+
+            coeur.classList.add("coeur");
+
+            coeur.style.left =
+                Math.random() * 100 + "vw";
+
+            coeur.style.animationDelay =
+                Math.random() * 2 + "s";
+
+            coeur.style.fontSize =
+                (15 + Math.random() * 20) + "px";
+
+            document.body.appendChild(coeur);
+
+
+            setTimeout(function () {
+
+                coeur.remove();
+
+            }, 5500);
+
+        }
 
     }
 
-}
+});
 ```
