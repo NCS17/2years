@@ -39,6 +39,7 @@ body {
     padding: 30px 15px;
 
     position: relative;
+
     z-index: 2;
 }
 
@@ -63,7 +64,7 @@ body {
 
 
 /* =========================
-   FOND AVEC LES CŒURS
+   CŒURS DU FOND
 ========================= */
 
 .background-hearts span {
@@ -86,34 +87,43 @@ body {
 .background-hearts span:nth-child(2) {
     left: 85%;
     top: 20%;
+
     font-size: 40px;
+
     animation-delay: 1s;
 }
 
 .background-hearts span:nth-child(3) {
     left: 18%;
     bottom: 15%;
+
     font-size: 35px;
+
     animation-delay: 2s;
 }
 
 .background-hearts span:nth-child(4) {
     right: 12%;
     bottom: 18%;
+
     animation-delay: 3s;
 }
 
 .background-hearts span:nth-child(5) {
     left: 50%;
     top: 8%;
+
     font-size: 30px;
+
     animation-delay: 4s;
 }
 
 .background-hearts span:nth-child(6) {
     left: 70%;
     bottom: 8%;
+
     font-size: 45px;
+
     animation-delay: 5s;
 }
 
@@ -154,6 +164,7 @@ body {
     backdrop-filter: blur(12px);
 
     position: relative;
+
     z-index: 2;
 }
 
@@ -163,7 +174,6 @@ body {
 ========================= */
 
 .heart {
-
     font-size: 65px;
 
     margin-bottom: 10px;
@@ -319,7 +329,8 @@ h2 {
 
     color: white;
 
-    box-shadow: 0 8px 20px rgba(200, 62, 90, 0.25);
+    box-shadow:
+        0 8px 20px rgba(200, 62, 90, 0.25);
 }
 
 .yes:hover {
@@ -327,6 +338,9 @@ h2 {
     transform: scale(1.08);
 
     background: #b83250;
+
+    box-shadow:
+        0 10px 25px rgba(200, 62, 90, 0.35);
 }
 
 .no {
@@ -336,13 +350,23 @@ h2 {
     color: #7b4b54;
 }
 
+.no:hover {
+
+    transform: scale(0.95);
+}
+
+
+/* =========================
+   MESSAGE APRÈS OUI
+========================= */
+
 #message {
 
     display: none;
 
     margin-top: 25px;
 
-    padding: 18px;
+    padding: 20px;
 
     border-radius: 20px;
 
@@ -353,7 +377,24 @@ h2 {
     font-size: 17px;
 
     line-height: 1.7;
+
+    animation: messageIn 0.6s ease;
 }
+
+#message p {
+
+    margin-bottom: 18px;
+}
+
+#suite {
+
+    margin-top: 5px;
+}
+
+
+/* =========================
+   PETIT TEXTE
+========================= */
 
 .bottom-text {
 
@@ -409,7 +450,7 @@ h2 {
 
 
 /* =========================
-   CARTES DES DATES
+   CHOIX DES DATES
 ========================= */
 
 .date-options {
@@ -447,20 +488,21 @@ h2 {
 
     font-family: "Poppins", sans-serif;
 
-    transition: all 0.3s ease;
-
     color: #4a252c;
+
+    transition: all 0.3s ease;
 }
 
 .date-card:hover {
 
     transform: translateY(-4px) scale(1.01);
 
-    background: #fff;
+    background: #ffffff;
 
     border-color: #d9788c;
 
-    box-shadow: 0 12px 30px rgba(160, 60, 80, 0.12);
+    box-shadow:
+        0 12px 30px rgba(160, 60, 80, 0.12);
 }
 
 .date-icon {
@@ -628,7 +670,8 @@ h2 {
 
     border-radius: 30px;
 
-    box-shadow: 0 25px 70px rgba(80, 20, 30, 0.25);
+    box-shadow:
+        0 25px 70px rgba(80, 20, 30, 0.25);
 
     animation: popup 0.5s ease;
 }
@@ -637,11 +680,13 @@ h2 {
 
     from {
         transform: scale(0.8);
+
         opacity: 0;
     }
 
     to {
         transform: scale(1);
+
         opacity: 1;
     }
 }
@@ -690,6 +735,11 @@ h2 {
     gap: 12px;
 }
 
+
+/* =========================
+   MESSAGE FINAL
+========================= */
+
 .final-box p {
 
     color: #69434a;
@@ -730,12 +780,32 @@ h2 {
 
     0% {
         transform: translateY(0) rotate(0deg);
+
         opacity: 1;
     }
 
     100% {
         transform: translateY(110vh) rotate(360deg);
+
         opacity: 0;
+    }
+}
+
+
+/* =========================
+   ANIMATION MESSAGE
+========================= */
+
+@keyframes messageIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -747,6 +817,7 @@ h2 {
 @media (max-width: 600px) {
 
     .page {
+
         padding: 15px 10px;
     }
 
@@ -760,70 +831,90 @@ h2 {
     }
 
     .heart {
+
         font-size: 50px;
     }
 
     h1 {
+
         font-size: 75px;
     }
 
     h2 {
+
         font-size: 35px;
     }
 
     .intro {
+
         font-size: 14px;
     }
 
     .question {
+
         font-size: 15px;
     }
 
     .choice-container {
+
         padding: 30px 16px;
     }
 
     .choice-title {
+
         font-size: 55px;
     }
 
     .choice-intro {
+
         font-size: 14px;
     }
 
     .date-card {
+
         padding: 14px;
+
         gap: 12px;
     }
 
     .date-icon {
+
         min-width: 50px;
+
         height: 50px;
+
         font-size: 24px;
+
         border-radius: 14px;
     }
 
     .date-info h3 {
+
         font-size: 15px;
     }
 
     .date-info p {
+
         font-size: 11px;
     }
 
     .arrow {
+
         font-size: 20px;
     }
 
     .choice-footer p {
+
         font-size: 28px;
     }
 
     .confirmation-buttons {
+
         flex-direction: column;
     }
 
     .confirmation-buttons .btn {
+
         width: 100%;
     }
 }
