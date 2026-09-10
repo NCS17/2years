@@ -918,4 +918,9 @@ h2 {
         width: 100%;
     }
 }
-```
+.screenshot-instruction {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #8f3047 !important;
+    font-weight: 500;
+}
