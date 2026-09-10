@@ -1,5 +1,5 @@
 ```javascript
-document.addEventListener("DOMContentLoaded", () => {
+window.onload = function () {
 
     const oui = document.getElementById("oui");
     const non = document.getElementById("non");
@@ -9,11 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const page1 = document.getElementById("page1");
     const page2 = document.getElementById("page2");
 
-    // TEST
-    console.log("SCRIPT JS FONCTIONNE ❤️");
+    console.log("JS CHARGÉ ❤️");
 
+    // =========================
     // BOUTON OUI
-    oui.onclick = () => {
+    // =========================
+
+    oui.onclick = function () {
 
         console.log("OUI CLIQUÉ ❤️");
 
@@ -23,19 +25,30 @@ document.addEventListener("DOMContentLoaded", () => {
         message.style.display = "block";
     };
 
-    // BOUTON NON
-    non.onmouseenter = () => {
 
-        const x = Math.random() * (window.innerWidth - non.offsetWidth);
-        const y = Math.random() * (window.innerHeight - non.offsetHeight);
+    // =========================
+    // BOUTON NON
+    // =========================
+
+    non.onmouseenter = function () {
+
+        const x = Math.random() * (window.innerWidth - non.offsetWidth - 20);
+        const y = Math.random() * (window.innerHeight - non.offsetHeight - 20);
 
         non.style.position = "fixed";
-        non.style.left = x + "px";
-        non.style.top = y + "px";
+        non.style.left = Math.max(10, x) + "px";
+        non.style.top = Math.max(10, y) + "px";
+        non.style.zIndex = "9999";
     };
 
+
+    // =========================
     // BOUTON SUITE
-    suite.onclick = () => {
+    // =========================
+
+    suite.onclick = function () {
+
+        console.log("SUITE CLIQUÉE ❤️");
 
         page1.classList.remove("active");
         page2.classList.add("active");
@@ -43,5 +56,5 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollTo(0, 0);
     };
 
-});
+};
 ```
