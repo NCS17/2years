@@ -8,18 +8,17 @@
 
     <title>Nos 2 ans ❤️</title>
 
-    <!-- Police romantique -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Notre CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Fond avec petits cœurs -->
+    <!-- Cœurs du fond -->
     <div class="background-hearts">
         <span>♡</span>
         <span>♡</span>
@@ -29,52 +28,272 @@
         <span>♡</span>
     </div>
 
-    <!-- Contenu principal -->
-    <main class="container">
 
-        <div class="heart">❤️</div>
+    <!-- =========================
+         PAGE 1
+    ========================== -->
 
-        <p class="small-title">Une petite surprise pour toi...</p>
+    <main id="page1" class="page active">
 
-        <h1>Nos 2 ans</h1>
+        <div class="container">
 
-        <div class="separator">
-            <span>♥</span>
+            <div class="heart">❤️</div>
+
+            <p class="small-title">
+                Une petite surprise pour toi...
+            </p>
+
+            <h1>Nos 2 ans</h1>
+
+            <div class="separator">
+                <span>♥</span>
+            </div>
+
+            <h2>Deux ans de nous.</h2>
+
+            <p class="intro">
+                Deux ans de souvenirs, de rires, de moments incroyables
+                et surtout... deux ans à tes côtés. ❤️
+            </p>
+
+            <p class="question">
+                Et si on écrivait<br>
+                encore quelques beaux souvenirs ensemble ?
+            </p>
+
+            <div class="buttons">
+
+                <button id="oui" class="btn yes">
+                    Oui ❤️
+                </button>
+
+                <button id="non" class="btn no">
+                    Non
+                </button>
+
+            </div>
+
+            <div id="message"></div>
+
+            <p class="bottom-text">
+                J'ai quelque chose à te demander...
+            </p>
+
         </div>
-
-        <h2>Deux ans de nous.</h2>
-
-        <p class="intro">
-            Deux ans de souvenirs, de rires, de moments incroyables
-            et surtout... deux ans à tes côtés. ❤️
-        </p>
-
-        <p class="question">
-            Et si on écrivait<br>
-            encore quelques beaux souvenirs ensemble ?
-        </p>
-
-        <div class="buttons">
-
-            <button id="oui" class="btn yes">
-                Oui ❤️
-            </button>
-
-            <button id="non" class="btn no">
-                Non
-            </button>
-
-        </div>
-
-        <div id="message"></div>
-
-        <p class="bottom-text">
-            J'ai quelque chose à te demander...
-        </p>
 
     </main>
 
-    <!-- Notre JavaScript -->
+
+    <!-- =========================
+         PAGE 2
+    ========================== -->
+
+    <main id="page2" class="page">
+
+        <div class="container choice-container">
+
+            <div class="small-heart">
+                💕
+            </div>
+
+            <p class="small-title">
+                Maintenant que tu as dit oui...
+            </p>
+
+            <h1 class="choice-title">
+                Quel sera notre date ?
+            </h1>
+
+            <p class="choice-intro">
+                Pour nos 2 ans, c'est toi qui choisis
+                l'aventure qu'on va vivre ensemble. ❤️
+            </p>
+
+
+            <!-- CHOIX 1 -->
+
+            <div class="date-options">
+
+                <button class="date-card" data-choice="Spa / Restaurant">
+
+                    <div class="date-icon">
+                        🧖‍♀️🍽️
+                    </div>
+
+                    <div class="date-info">
+
+                        <h3>
+                            Spa & Restaurant
+                        </h3>
+
+                        <p>
+                            Un moment de détente, un bon repas
+                            et une soirée rien qu'à nous deux.
+                        </p>
+
+                    </div>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- CHOIX 2 -->
+
+                <button class="date-card" data-choice="Une nuit dans un arbre">
+
+                    <div class="date-icon">
+                        🌳🌙
+                    </div>
+
+                    <div class="date-info">
+
+                        <h3>
+                            Une nuit dans un arbre
+                        </h3>
+
+                        <p>
+                            Une nuit insolite à Phalempin,
+                            perchés dans les arbres. ✨
+                        </p>
+
+                    </div>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- CHOIX 3 -->
+
+                <button class="date-card" data-choice="Atelier création de parfum">
+
+                    <div class="date-icon">
+                        🌸🧴
+                    </div>
+
+                    <div class="date-info">
+
+                        <h3>
+                            Création de parfum
+                        </h3>
+
+                        <p>
+                            Un atelier à Lille pour créer
+                            chacun notre propre parfum. 🌹
+                        </p>
+
+                    </div>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- Message du bas -->
+
+            <div class="choice-footer">
+
+                <div class="footer-heart">
+                    ❤️
+                </div>
+
+                <p>
+                    À toi de choisir...
+                </p>
+
+                <span>
+                    Le choix que tu feras sera
+                    <strong>notre date pour nos 2 ans.</strong>
+                </span>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         POPUP DE CONFIRMATION
+    ========================== -->
+
+    <div id="confirmation" class="confirmation-overlay">
+
+        <div class="confirmation-box">
+
+            <div class="confirmation-heart">
+                ❤️
+            </div>
+
+            <h2>
+                Tu choisis...
+            </h2>
+
+            <p id="selected-choice">
+                ...
+            </p>
+
+            <p class="confirmation-text">
+                Alors c'est décidé ? 🥰
+            </p>
+
+            <div class="confirmation-buttons">
+
+                <button id="confirm-choice" class="btn yes">
+                    Oui ❤️
+                </button>
+
+                <button id="cancel-choice" class="btn no">
+                    Je change
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Message final -->
+
+    <div id="final-message" class="final-overlay">
+
+        <div class="final-box">
+
+            <div class="final-big-heart">
+                💖
+            </div>
+
+            <h2>
+                C'est notre date ! 
+            </h2>
+
+            <p id="final-choice">
+                ...
+            </p>
+
+            <p>
+                J'ai tellement hâte de vivre ça avec toi. ❤️
+            </p>
+
+            <div class="final-hearts">
+                ✨ ❤️ ✨
+            </div>
+
+        </div>
+
+    </div>
+
+
     <script src="script.js"></script>
 
 </body>
