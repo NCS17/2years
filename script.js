@@ -1,6 +1,6 @@
 ```javascript
 /* =========================
-   RÉCUPÉRATION DES ÉLÉMENTS
+   ÉLÉMENTS DU SITE
 ========================= */
 
 const page1 = document.getElementById("page1");
@@ -10,6 +10,7 @@ const boutonOui = document.getElementById("oui");
 const boutonNon = document.getElementById("non");
 
 const message = document.getElementById("message");
+const boutonSuite = document.getElementById("suite");
 
 const confirmation = document.getElementById("confirmation");
 const selectedChoice = document.getElementById("selected-choice");
@@ -20,11 +21,14 @@ const cancelChoice = document.getElementById("cancel-choice");
 const finalMessage = document.getElementById("final-message");
 const finalChoice = document.getElementById("final-choice");
 
+
+/* Choix de date */
+
 let choixDate = "";
 
 
 /* =========================
-   BOUTON NON — PAGE 1
+   BOUTON NON
 ========================= */
 
 function bougerBoutonNon() {
@@ -75,32 +79,64 @@ boutonNon.addEventListener("touchstart", function (event) {
 
 
 /* =========================
-   BOUTON OUI — PAGE 1
+   BOUTON OUI
 ========================= */
 
 boutonOui.addEventListener("click", function () {
 
     /*
-       Petite animation avant de passer
-       à la deuxième page.
+       On cache les deux premiers boutons.
     */
 
-    boutonOui.style.transform = "scale(1.15)";
+    boutonOui.style.display = "none";
+
+    boutonNon.style.display = "none";
+
+
+    /*
+       On affiche le message.
+    */
+
+    message.style.display = "block";
+
+
+    /*
+       Petite pluie de cœurs.
+    */
 
     creerCoeurs();
 
-    setTimeout(function () {
+});
 
-        page1.classList.remove("active");
 
-        page2.classList.add("active");
+/* =========================
+   DÉCOUVRIR LA SUITE
+========================= */
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+boutonSuite.addEventListener("click", function () {
 
-    }, 600);
+    /*
+       On fait disparaître la page 1.
+    */
+
+    page1.classList.remove("active");
+
+
+    /*
+       On affiche la page 2.
+    */
+
+    page2.classList.add("active");
+
+
+    /*
+       On remonte en haut de la page.
+    */
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 });
 
@@ -118,7 +154,7 @@ dateCards.forEach(function (card) {
     card.addEventListener("click", function () {
 
         /*
-           Récupère le choix de la personne.
+           On récupère le choix.
         */
 
         choixDate =
@@ -126,7 +162,8 @@ dateCards.forEach(function (card) {
 
 
         /*
-           Affiche le choix dans la fenêtre.
+           On affiche le choix dans
+           la fenêtre de confirmation.
         */
 
         selectedChoice.textContent =
@@ -134,7 +171,7 @@ dateCards.forEach(function (card) {
 
 
         /*
-           Affiche la confirmation.
+           On ouvre la fenêtre.
         */
 
         confirmation.classList.add("show");
@@ -145,7 +182,7 @@ dateCards.forEach(function (card) {
 
 
 /* =========================
-   ANNULER LE CHOIX
+   BOUTON "JE CHANGE"
 ========================= */
 
 cancelChoice.addEventListener("click", function () {
@@ -156,20 +193,20 @@ cancelChoice.addEventListener("click", function () {
 
 
 /* =========================
-   CONFIRMER LE DATE
+   CONFIRMER LE CHOIX
 ========================= */
 
 confirmChoice.addEventListener("click", function () {
 
     /*
-       Ferme la première fenêtre.
+       Ferme la confirmation.
     */
 
     confirmation.classList.remove("show");
 
 
     /*
-       Affiche le choix final.
+       Met le choix dans le message final.
     */
 
     finalChoice.textContent =
@@ -177,7 +214,7 @@ confirmChoice.addEventListener("click", function () {
 
 
     /*
-       Affiche le message final.
+       Petit délai avant l'affichage.
     */
 
     setTimeout(function () {
@@ -192,7 +229,7 @@ confirmChoice.addEventListener("click", function () {
 
 
 /* =========================
-   CRÉATION DES CŒURS
+   CRÉER DES CŒURS
 ========================= */
 
 function creerCoeurs() {
@@ -206,20 +243,37 @@ function creerCoeurs() {
 
         coeur.classList.add("coeur");
 
+
+        /*
+           Position horizontale aléatoire.
+        */
+
         coeur.style.left =
             Math.random() * 100 + "vw";
+
+
+        /*
+           Délai aléatoire.
+        */
 
         coeur.style.animationDelay =
             Math.random() * 2 + "s";
 
+
+        /*
+           Taille aléatoire.
+        */
+
         coeur.style.fontSize =
             (15 + Math.random() * 20) + "px";
+
 
         document.body.appendChild(coeur);
 
 
         /*
-           Supprime le cœur après l'animation.
+           Supprime le cœur après
+           l'animation.
         */
 
         setTimeout(function () {
